@@ -1,17 +1,32 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Chat Room</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <h2>Welcome to Fred Chat!</h2>
+  <hr>
+  <!-- TODO ADD MESSAGE CONTROLS-->
+  <ion-list>
+    <ion-item>
+      <ion-label>Message</ion-label>
+      <ion-input [(ngModel)]="message" name="message" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button outline block (click)="sendMessage(message)">Send
+      </button>
+    </ion-item>
+  </ion-list>
+  <hr>
+  <ion-card *ngFor="let message of messages" [@flyInOut]>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="leaf" item-left></ion-icon>
+          {{message}}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
