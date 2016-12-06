@@ -1,6 +1,6 @@
 import {
   Component, style, animate, transition, state,
-  trigger
+  trigger, ChangeDetectorRef, ChangeDetectionStrategy, ApplicationRef
 } from '@angular/core';
 
 import {NavController} from 'ionic-angular';
@@ -25,13 +25,15 @@ export class HomePage {
   messages = [];
   message: string = '';
 
-  constructor(public navCtrl: NavController) {
+  constructor(private ref: ApplicationRef, public navCtrl: NavController) {
     socket.on('chat message', (msg) => {
       this.messages.push(msg);
+      this.ref.tick();
     });
   }
 
   sendMessage(message) {
     socket.emit('chat message', message);
+    this.message = '';
   }
 }
