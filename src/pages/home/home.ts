@@ -5,7 +5,7 @@ import {
 
 import {NavController} from 'ionic-angular';
 
-declare var io;
+declare var socket;
 
 @Component({
   selector: 'page-home',
@@ -26,11 +26,12 @@ export class HomePage {
   message: string = '';
 
   constructor(public navCtrl: NavController) {
-
+    socket.on('chat message', (msg) => {
+      this.messages.push(msg);
+    });
   }
 
   sendMessage(message) {
-    this.messages.push(message);
-    this.message = '';
+    socket.emit('chat message', message);
   }
 }
