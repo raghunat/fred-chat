@@ -6,7 +6,8 @@
   "scripts": {
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "start": "node server/server.js & ionic-app-scripts build"
+    "heroku:build": "ionic-app-scripts build && cp -a ./www/ ./dist/",
+    "start": "node server/server.js"
   },
   "dependencies": {
     "@angular/common": "2.1.1",
